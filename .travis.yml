@@ -23,12 +23,12 @@ script:
       travis-cargo build &&
       travis-cargo test &&
       travis-cargo bench &&
-      travis-cargo --only stable doc
+      travis-cargo --only nightly doc
 
 after_success:
   # upload the documentation from the build with stable (automatically only actually
   # runs on the master branch, not individual PRs)
-  - travis-cargo --only stable doc-upload
+  - travis-cargo --only nightly doc-upload
   # measure code coverage and upload to coveralls.io
   - travis-cargo coveralls --no-sudo
 
