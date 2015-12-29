@@ -39,6 +39,11 @@ impl Move {
 
     /// `Move` vectors that is toward four adjacent points.
     pub const ALL_DIRECTIONS: [Move; 4] = [Move::UP, Move::RIGHT, Move::DOWN, Move::LEFT];
+
+    /// `Move` vectors that is toward eight adjacent points.
+    pub const ALL_ADJACENTS: [Move; 8] = [
+        Move::UP, Move(-1, 1), Move::RIGHT, Move(1, 1),
+        Move::DOWN, Move(1, -1), Move::LEFT, Move(-1, -1)];
 }
 
 
