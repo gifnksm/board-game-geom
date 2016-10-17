@@ -1,7 +1,5 @@
 //! Geometric types for 2D lattice-shaped puzzles.
 
-#![feature(associated_consts)]
-
 use std::ops::{Add, Mul, Sub, Neg, Index, IndexMut, Range};
 
 /// A two-dimensional lattice point.
@@ -24,27 +22,24 @@ pub struct Move(pub i32, pub i32);
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash)]
 pub struct Rotation(i32, i32, i32, i32);
 
-impl Move {
-    /// An upward `Move` vector.
-    pub const UP:    Move = Move(-1, 0);
+/// An upward `Move` vector.
+pub const MOVE_UP: Move = Move(-1, 0);
 
-    /// A rightward `Move` vector.
-    pub const RIGHT: Move = Move(0, 1);
+/// A rightward `Move` vector.
+pub const MOVE_RIGHT: Move = Move(0, 1);
 
-    /// A downward `Move` vector.
-    pub const DOWN:  Move = Move(1, 0);
+/// A downward `Move` vector.
+pub const MOVE_DOWN: Move = Move(1, 0);
 
-    /// A leftward `Move` vector.
-    pub const LEFT:  Move = Move(0, -1);
+/// A leftward `Move` vector.
+pub const MOVE_LEFT: Move = Move(0, -1);
 
-    /// `Move` vectors that is toward four adjacent points.
-    pub const ALL_DIRECTIONS: [Move; 4] = [Move::UP, Move::RIGHT, Move::DOWN, Move::LEFT];
+/// `Move` vectors that is toward four adjacent points.
+pub const MOVE_ALL_DIRECTIONS: [Move; 4] = [MOVE_UP, MOVE_RIGHT, MOVE_DOWN, MOVE_LEFT];
 
-    /// `Move` vectors that is toward eight adjacent points.
-    pub const ALL_ADJACENTS: [Move; 8] = [
-        Move::UP, Move(-1, 1), Move::RIGHT, Move(1, 1),
-        Move::DOWN, Move(1, -1), Move::LEFT, Move(-1, -1)];
-}
+/// `Move` vectors that is toward eight adjacent points.
+pub const MOVE_ALL_ADJACENTS: [Move; 8] =
+    [MOVE_UP, Move(-1, 1), MOVE_RIGHT, Move(1, 1), MOVE_DOWN, Move(1, -1), MOVE_LEFT, Move(-1, -1)];
 
 
 impl Add<Move> for Point {
@@ -101,25 +96,23 @@ impl Mul<i32> for Move {
     }
 }
 
-impl Rotation {
-    /// A 0-degree `Rotation` to the left (counterclockwise).
-    pub const CCW0:   Rotation = Rotation(1, 0, 0, 1);
+/// A 0-degree `Rotation` to the left (counterclockwise).
+pub const ROT_CCW0: Rotation = Rotation(1, 0, 0, 1);
 
-    /// A 90-degree `Rotation` to the left (counterclockwise).
-    pub const CCW90:  Rotation = Rotation(0, -1, 1, 0);
+/// A 90-degree `Rotation` to the left (counterclockwise).
+pub const ROT_CCW90: Rotation = Rotation(0, -1, 1, 0);
 
-    /// A 180-degree `Rotation` to the left (counterclockwise).
-    pub const CCW180: Rotation = Rotation(-1, 0, 0, -1);
+/// A 180-degree `Rotation` to the left (counterclockwise).
+pub const ROT_CCW180: Rotation = Rotation(-1, 0, 0, -1);
 
-    /// A 270-degree `Rotation` to the left (counterclockwise).
-    pub const CCW270: Rotation = Rotation(0, 1, -1, 0);
+/// A 270-degree `Rotation` to the left (counterclockwise).
+pub const ROT_CCW270: Rotation = Rotation(0, 1, -1, 0);
 
-    /// Flip horizontal.
-    pub const H_FLIP: Rotation = Rotation(1, 0, 0, -1);
+/// Flip horizontal.
+pub const ROT_H_FLIP: Rotation = Rotation(1, 0, 0, -1);
 
-    /// Flip vertical.
-    pub const V_FLIP: Rotation = Rotation(-1, 0, 0, 1);
-}
+/// Flip vertical.
+pub const ROT_V_FLIP: Rotation = Rotation(-1, 0, 0, 1);
 
 impl Mul<Rotation> for Rotation {
     type Output = Rotation;
@@ -147,10 +140,10 @@ impl Mul<Move> for Rotation {
 #[derive(Copy, Clone, Debug, Eq, PartialEq, Hash, Ord, PartialOrd)]
 pub struct CellId(usize);
 
-impl CellId {
-    /// An ID being given to cells on outside the rectangle.
-    pub const OUTSIDE: CellId = CellId(0);
+/// An ID being given to cells on outside the rectangle.
+pub const CELL_ID_OUTSIDE: CellId = CellId(0);
 
+impl CellId {
     /// Creates a new `CellId` from an ID.
     #[inline]
     pub fn new(id: usize) -> CellId {
@@ -166,7 +159,7 @@ impl CellId {
     /// Returns if the cell is on outside of the rectangle.
     #[inline]
     pub fn is_outside(self) -> bool {
-        self == CellId::OUTSIDE
+        self == CELL_ID_OUTSIDE
     }
 }
 
@@ -210,7 +203,7 @@ pub trait Geom {
         if self.contains(p) {
             CellId::new((p.0 * self.column() + p.1 + 1) as usize)
         } else {
-            CellId::OUTSIDE
+            CELL_ID_OUTSIDE
         }
     }
 
@@ -420,7 +413,7 @@ mod tests {
 
     #[test]
     fn rotate_mat() {
-        let mat = [Rotation::CCW0, Rotation::CCW90, Rotation::CCW180, Rotation::CCW270];
+        let mat = [ROT_CCW0, ROT_CCW90, ROT_CCW180, ROT_CCW270];
         for i in 0..mat.len() {
             for j in 0..mat.len() {
                 assert_eq!(mat[(i + j) % mat.len()], mat[i] * mat[j]);
@@ -430,12 +423,12 @@ mod tests {
 
     #[test]
     fn rotate_point() {
-        let mat = [Rotation::CCW0, Rotation::CCW90, Rotation::CCW180, Rotation::CCW270];
-        let vec = [[Move::UP, Move::LEFT, Move::DOWN, Move::RIGHT],
-                   [Move::UP + Move::RIGHT,
-                    Move::LEFT + Move::UP,
-                    Move::DOWN + Move::LEFT,
-                    Move::RIGHT + Move::DOWN]];
+        let mat = [ROT_CCW0, ROT_CCW90, ROT_CCW180, ROT_CCW270];
+        let vec = [[MOVE_UP, MOVE_LEFT, MOVE_DOWN, MOVE_RIGHT],
+                   [MOVE_UP + MOVE_RIGHT,
+                    MOVE_LEFT + MOVE_UP,
+                    MOVE_DOWN + MOVE_LEFT,
+                    MOVE_RIGHT + MOVE_DOWN]];
         for i in 0..mat.len() {
             for v in &vec {
                 for j in 0..v.len() {
