@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["board_game_geom"] = [{"text":"impl Eq for Point","synthetic":false,"types":[]},{"text":"impl Eq for Size","synthetic":false,"types":[]},{"text":"impl Eq for Move","synthetic":false,"types":[]},{"text":"impl Eq for Rotation","synthetic":false,"types":[]},{"text":"impl Eq for CellId","synthetic":false,"types":[]},{"text":"impl&lt;T:&nbsp;Eq&gt; Eq for Table&lt;T&gt;","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

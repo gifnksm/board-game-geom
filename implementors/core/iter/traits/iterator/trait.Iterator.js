@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["board_game_geom"] = [{"text":"impl Iterator for Points","synthetic":false,"types":[]},{"text":"impl Iterator for PointsInRow","synthetic":false,"types":[]},{"text":"impl Iterator for PointsInColumn","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

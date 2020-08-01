@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["board_game_geom"] = [{"text":"impl Copy for Point","synthetic":false,"types":[]},{"text":"impl Copy for Size","synthetic":false,"types":[]},{"text":"impl Copy for Move","synthetic":false,"types":[]},{"text":"impl Copy for Rotation","synthetic":false,"types":[]},{"text":"impl Copy for CellId","synthetic":false,"types":[]},{"text":"impl Copy for Points","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["board_game_geom"] = [{"text":"impl PartialEq&lt;Point&gt; for Point","synthetic":false,"types":[]},{"text":"impl PartialEq&lt;Size&gt; for Size","synthetic":false,"types":[]},{"text":"impl PartialEq&lt;Move&gt; for Move","synthetic":false,"types":[]},{"text":"impl PartialEq&lt;Rotation&gt; for Rotation","synthetic":false,"types":[]},{"text":"impl PartialEq&lt;CellId&gt; for CellId","synthetic":false,"types":[]},{"text":"impl&lt;T:&nbsp;PartialEq&gt; PartialEq&lt;Table&lt;T&gt;&gt; for Table&lt;T&gt;","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

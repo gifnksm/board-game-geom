@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["board_game_geom"] = [{"text":"impl StructuralEq for Point","synthetic":false,"types":[]},{"text":"impl StructuralEq for Size","synthetic":false,"types":[]},{"text":"impl StructuralEq for Move","synthetic":false,"types":[]},{"text":"impl StructuralEq for Rotation","synthetic":false,"types":[]},{"text":"impl StructuralEq for CellId","synthetic":false,"types":[]},{"text":"impl&lt;T&gt; StructuralEq for Table&lt;T&gt;","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
