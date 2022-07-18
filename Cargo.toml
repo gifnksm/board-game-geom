@@ -2,7 +2,7 @@
 name = "board-game-geom"
 version = "0.2.0"
 authors = ["gifnksm <makoto.nksm+github@gmail.com>"]
-license = "MIT"
+license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/gifnksm/board-game-geom"
 description = "Geometry library for board game."
