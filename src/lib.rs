@@ -248,7 +248,7 @@ pub trait Geom {
     #[inline]
     fn points_in_row(&self, row: i32) -> PointsInRow {
         PointsInRow {
-            row: row,
+            row,
             columns: 0..self.column(),
         }
     }
@@ -257,7 +257,7 @@ pub trait Geom {
     #[inline]
     fn points_in_column(&self, column: i32) -> PointsInColumn {
         PointsInColumn {
-            column: column,
+            column,
             rows: 0..self.row(),
         }
     }
@@ -350,10 +350,7 @@ impl<T> Table<T> {
     pub fn new(size: Size, outside: T, mut data: Vec<T>) -> Table<T> {
         assert_eq!((size.0 * size.1) as usize, data.len());
         data.insert(0, outside);
-        Table {
-            size: size,
-            data: data,
-        }
+        Table { size, data }
     }
 
     /// Creates a new empty table.
