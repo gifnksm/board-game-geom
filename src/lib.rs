@@ -180,7 +180,6 @@ const OUTSIDE_POINT: Point = Point(-1, -1);
 /// A rectangle area.
 pub trait Geom {
     /// Returns the rectangle's size.
-    #[inline]
     fn size(&self) -> Size;
 
     /// Returns the number of the rectangle's rows.
