@@ -18,7 +18,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-board-game-geom = "0.2.0"
+board-game-geom = "0.3.0"
 ```
 
 ## Minimum supported Rust version (MSRV)
