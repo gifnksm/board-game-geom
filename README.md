@@ -9,6 +9,13 @@ Geometry library for board game.
 
 [Documentation](https://gifnksm.github.io/board-game-geom)
 
+## Usage
+
+Add this to your `Cargo.toml`:
+
+[dependencies]
+board-game-geom = "0.2.0"
+
 ## License
 
 Licensed under either of

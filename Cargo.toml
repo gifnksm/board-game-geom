@@ -6,3 +6,8 @@ license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/gifnksm/board-game-geom"
 description = "Geometry library for board game."
+
+[package.metadata.release]
+pre-release-replacements = [
+    { file = "README.md", search = "board-game-geom = \"[0-9\\.]+\"", replace = "{{crate_name}} = \"{{version}}\"" }
+]
