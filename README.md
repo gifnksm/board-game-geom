@@ -1,9 +1,12 @@
 # board-game-geom
 
+[![maintenance status: passively-maintained](https://img.shields.io/badge/maintenance-passively--maintained-yellowgreen.svg)](https://doc.rust-lang.org/cargo/reference/manifest.html#the-badges-section)
 [![license](https://img.shields.io/crates/l/board-game-geom.svg)](#license)
-[![Build Status (Travis CI)](https://travis-ci.org/gifnksm/board-game-geom.svg?branch=master)](https://travis-ci.org/gifnksm/board-game-geom)
-[![Coverage Status](https://coveralls.io/repos/gifnksm/board-game-geom/badge.svg?branch=master&service=github)](https://coveralls.io/github/gifnksm/board-game-geom?branch=master)
-[![crates.io](http://meritbadge.herokuapp.com/board-game-geom)](https://crates.io/crates/board-game-geom)
+[![crates.io](https://img.shields.io/crates/v/board-game-geom.svg)](https://crates.io/crates/board-game-geom)
+[![docs.rs](https://img.shields.io/docsrs/board-game-geom/latest)](https://docs.rs/board-game-geom/latest/)
+[![rust 1.56.1+ badge](https://img.shields.io/badge/rust-1.56.1+-93450a.svg)](https://doc.rust-lang.org/cargo/reference/manifest.html#the-rust-version-field)
+[![Rust CI](https://github.com/gifnksm/board-game-geom/actions/workflows/rust-ci.yml/badge.svg)](https://github.com/gifnksm/board-game-geom/actions/workflows/rust-ci.yml)
+[![codecov](https://codecov.io/gh/gifnksm/board-game-geom/branch/master/graph/badge.svg?token=bFNgEBUdSx)](https://codecov.io/gh/gifnksm/board-game-geom)
 
 Geometry library for board game.
 
@@ -13,8 +16,10 @@ Geometry library for board game.
 
 Add this to your `Cargo.toml`:
 
+```toml
 [dependencies]
 board-game-geom = "0.2.0"
+```
 
 ## Minimum supported Rust version (MSRV)
 
