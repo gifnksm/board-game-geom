@@ -1,6 +1,6 @@
 //! Geometric types for 2D lattice-shaped puzzles.
 
-use std::ops::{Add, Mul, Sub, Neg, Index, IndexMut, Range};
+use std::ops::{Add, Index, IndexMut, Mul, Neg, Range, Sub};
 
 /// A two-dimensional lattice point.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Hash, Ord, PartialOrd)]
@@ -38,9 +38,16 @@ pub const MOVE_LEFT: Move = Move(0, -1);
 pub const MOVE_ALL_DIRECTIONS: [Move; 4] = [MOVE_UP, MOVE_RIGHT, MOVE_DOWN, MOVE_LEFT];
 
 /// `Move` vectors that is toward eight adjacent points.
-pub const MOVE_ALL_ADJACENTS: [Move; 8] =
-    [MOVE_UP, Move(-1, 1), MOVE_RIGHT, Move(1, 1), MOVE_DOWN, Move(1, -1), MOVE_LEFT, Move(-1, -1)];
-
+pub const MOVE_ALL_ADJACENTS: [Move; 8] = [
+    MOVE_UP,
+    Move(-1, 1),
+    MOVE_RIGHT,
+    Move(1, 1),
+    MOVE_DOWN,
+    Move(1, -1),
+    MOVE_LEFT,
+    Move(-1, -1),
+];
 
 impl Add<Move> for Point {
     type Output = Point;
@@ -119,10 +126,12 @@ impl Mul<Rotation> for Rotation {
 
     #[inline]
     fn mul(self, other: Rotation) -> Rotation {
-        Rotation(self.0 * other.0 + self.1 * other.2,
-                 self.0 * other.1 + self.1 * other.3,
-                 self.2 * other.0 + self.3 * other.2,
-                 self.2 * other.1 + self.3 * other.3)
+        Rotation(
+            self.0 * other.0 + self.1 * other.2,
+            self.0 * other.1 + self.1 * other.3,
+            self.2 * other.0 + self.3 * other.2,
+            self.2 * other.1 + self.3 * other.3,
+        )
     }
 }
 
@@ -131,8 +140,10 @@ impl Mul<Move> for Rotation {
 
     #[inline]
     fn mul(self, other: Move) -> Move {
-        Move(self.0 * other.0 + self.1 * other.1,
-             self.2 * other.0 + self.3 * other.1)
+        Move(
+            self.0 * other.0 + self.1 * other.1,
+            self.2 * other.0 + self.3 * other.1,
+        )
     }
 }
 
@@ -349,7 +360,8 @@ impl<T> Table<T> {
     /// Creates a new empty table.
     #[inline]
     pub fn new_empty(size: Size, outside: T, init: T) -> Table<T>
-        where T: Clone
+    where
+        T: Clone,
     {
         let data = vec![init; (size.0 * size.1) as usize];
         Table::new(size, outside, data)
@@ -381,7 +393,6 @@ impl<T> IndexMut<Point> for Table<T> {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -395,18 +406,20 @@ mod tests {
 
     #[test]
     fn points() {
-        let pts = [Point(0, 0),
-                   Point(0, 1),
-                   Point(0, 2),
-                   Point(1, 0),
-                   Point(1, 1),
-                   Point(1, 2),
-                   Point(2, 0),
-                   Point(2, 1),
-                   Point(2, 2),
-                   Point(3, 0),
-                   Point(3, 1),
-                   Point(3, 2)];
+        let pts = [
+            Point(0, 0),
+            Point(0, 1),
+            Point(0, 2),
+            Point(1, 0),
+            Point(1, 1),
+            Point(1, 2),
+            Point(2, 0),
+            Point(2, 1),
+            Point(2, 2),
+            Point(3, 0),
+            Point(3, 1),
+            Point(3, 2),
+        ];
         let rect = Rect(Size(4, 3));
         assert_eq!(&pts[..], &rect.points().collect::<Vec<_>>()[..]);
     }
@@ -424,11 +437,15 @@ mod tests {
     #[test]
     fn rotate_point() {
         let mat = [ROT_CCW0, ROT_CCW90, ROT_CCW180, ROT_CCW270];
-        let vec = [[MOVE_UP, MOVE_LEFT, MOVE_DOWN, MOVE_RIGHT],
-                   [MOVE_UP + MOVE_RIGHT,
-                    MOVE_LEFT + MOVE_UP,
-                    MOVE_DOWN + MOVE_LEFT,
-                    MOVE_RIGHT + MOVE_DOWN]];
+        let vec = [
+            [MOVE_UP, MOVE_LEFT, MOVE_DOWN, MOVE_RIGHT],
+            [
+                MOVE_UP + MOVE_RIGHT,
+                MOVE_LEFT + MOVE_UP,
+                MOVE_DOWN + MOVE_LEFT,
+                MOVE_RIGHT + MOVE_DOWN,
+            ],
+        ];
         for i in 0..mat.len() {
             for v in &vec {
                 for j in 0..v.len() {
